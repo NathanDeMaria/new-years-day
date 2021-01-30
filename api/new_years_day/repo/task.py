@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 
 from ..db import TaskTable
@@ -14,3 +16,6 @@ class TaskRepo:
         self._db.commit()
         self._db.refresh(db_task)
         return db_task
+
+    def get_tasks(self) -> List[Task]:
+        return self._db.query(TaskTable).all()
