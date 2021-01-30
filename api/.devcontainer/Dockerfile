@@ -7,3 +7,6 @@ ENV PATH /root/.poetry/bin:${PATH}
 COPY poetry.* ./
 COPY pyproject.toml ./
 RUN poetry install
+
+ENTRYPOINT ["uvicorn"]
+CMD ["main:app"]
