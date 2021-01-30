@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, TextInput, Text } from "react-native";
+import { Button, StyleSheet, TextInput, Text, View } from "react-native";
 
 import { addTaskThunk } from "./taskSlice";
 
@@ -18,7 +18,7 @@ export default () => {
   };
 
   return (
-    <React.Fragment>
+    <View style={styles.container}>
       <Text>Name</Text>
       <TextInput
         onChangeText={(text) => setName(text)}
@@ -33,6 +33,15 @@ export default () => {
         value={weight?.toString()}
       />
       <Button onPress={onClickAdd} title="Add" />
-    </React.Fragment>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
