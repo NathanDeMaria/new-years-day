@@ -15,6 +15,10 @@ export class Api {
     return await this.get<Task[]>("task/all");
   }
 
+  public async getProgress(): Promise<number> {
+    return await this.get<number>("progress");
+  }
+
   private async get<T>(path: string): Promise<T> {
     try {
       const response = await axios.get(`${API_ROOT}/${path}`);

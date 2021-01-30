@@ -18,3 +18,6 @@ class WorkRepo:
         self._db.commit()
         self._db.refresh(db_work)
         return db_work
+
+    def get_works(self) -> List[Work]:
+        return self._db.query(WorkTable).all()

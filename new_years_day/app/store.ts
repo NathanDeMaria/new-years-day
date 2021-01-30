@@ -6,10 +6,12 @@ import {
   ThunkAction,
 } from "@reduxjs/toolkit";
 
+import { progressSlice } from "../features/progress/progressSlice";
 import { taskSlice } from "../features/tasks/taskSlice";
 
 const rootReducer = combineReducers({
   task: taskSlice.reducer,
+  progress: progressSlice.reducer,
 });
 
 const store = configureStore({

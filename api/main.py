@@ -24,3 +24,11 @@ async def get_tasks(session: Session = Depends(db.get_db)):
 async def add_work(work: CreateWork, session: Session = Depends(db.get_db)):
     work_repo = WorkRepo(session)
     return work_repo.create_work(work)
+
+
+@app.get("/progress")
+async def get_progress(session: Session = Depends(db.get_db)):
+    work_repo = WorkRepo(session)
+    works = work_repo.get_works()
+    total_weighted_minutes = sum(w.duration_minutes * w.task.weight for w in works)
+    return total_weighted_minutes
