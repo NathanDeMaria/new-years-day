@@ -8,6 +8,7 @@ import store from "./app/store";
 import AddTask from './features/tasks/AddTask';
 import TaskList from './features/tasks/TaskList';
 import Progress from './features/progress/Progress';
+import AddWork from './features/work/AddWork'
 
 const Drawer = createDrawerNavigator();
 
@@ -17,6 +18,7 @@ export default function App() {
       <NavigationContainer>
         <Drawer.Navigator  initialRouteName="Progress">
           <Drawer.Screen name="Progress" component={Progress} />
+          <Drawer.Screen name="Add Work" component={AddWork} />
           <Drawer.Screen name="Add Task" component={AddTask} />
           <Drawer.Screen name="Task List" component={TaskList} />
         </Drawer.Navigator>

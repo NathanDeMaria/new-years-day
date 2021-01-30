@@ -22,7 +22,6 @@ export default () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProgress());
-    // TODO: expire this on weight adds?
   }, [dispatch])
 
   const progressMinutes = useSelector(selectProgressMinutes);

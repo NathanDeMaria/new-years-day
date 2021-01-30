@@ -2,6 +2,7 @@ import axios from "axios";
 import Constants from "expo-constants";
 
 import { Task } from "./features/tasks/taskSlice";
+import { Work } from "./features/work/workSlice";
 
 const { manifest } = Constants;
 const API_ROOT = `http://${manifest.debuggerHost.split(":").shift()}:8000`;
@@ -17,6 +18,10 @@ export class Api {
 
   public async getProgress(): Promise<number> {
     return await this.get<number>("progress");
+  }
+
+  public async addWork(taskId: string, durationMinutes: number): Promise<Work> {
+    return await this.post<Work>("work", { taskId, durationMinutes });
   }
 
   private async get<T>(path: string): Promise<T> {
