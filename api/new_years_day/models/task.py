@@ -9,7 +9,7 @@ class BaseTask(BaseModel):
     weight: float
 
 
-class CreateTask(BaseModel):
+class CreateTask(BaseTask):
     pass
 
 
