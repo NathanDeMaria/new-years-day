@@ -5,3 +5,7 @@ output "subnet_ids" {
 output "sg_id" {
   value = aws_security_group.ecs_tasks.id
 }
+
+output "vpc_id" {
+  value = aws_vpc.main.id
+}

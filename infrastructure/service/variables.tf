@@ -14,3 +14,7 @@ variable "subnet_ids" {
 variable "sg_id" {
   description = "Security group for the ECS tasks to run in"
 }
+
+variable "db_endpoint" {
+  description = "Endpoint for the DB to connect to"
+}
