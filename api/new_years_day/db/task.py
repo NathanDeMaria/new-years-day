@@ -8,5 +8,5 @@ class TaskTable(Base):
     __tablename__ = "task"
 
     task_id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True)
+    name = Column(String(32), unique=True)
     weight = Column(Float)
