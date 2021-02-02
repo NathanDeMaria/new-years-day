@@ -23,6 +23,5 @@ module "rds-aurora" {
   username                = local.db_creds.username
   password                = local.db_creds.password
   create_random_password  = false
-  # Has to match connection string in API :/
-  database_name = "newYearsDay"
+  database_name           = "newYearsDay"
 }

@@ -37,4 +37,5 @@ module "service" {
   subnet_ids      = module.network.subnet_ids
   sg_id           = module.network.sg_id
   db_endpoint     = module.db.endpoint
+  db_name         = module.db.db_name
 }

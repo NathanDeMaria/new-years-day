@@ -21,7 +21,8 @@ resource "aws_ecs_task_definition" "api" {
       "image" : var.image
       "name" : "api",
       "environment" : [
-        { "name" : "DB_URL", "value" : var.db_endpoint }
+        { "name" : "DB_URL", "value" : var.db_endpoint },
+        { "name" : "DB_NAME", "value" : var.db_name }
       ]
       "portMappings" : [
         {

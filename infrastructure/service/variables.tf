@@ -18,3 +18,7 @@ variable "sg_id" {
 variable "db_endpoint" {
   description = "Endpoint for the DB to connect to"
 }
+
+variable "db_name" {
+  description = "Name of the DB to connect to"
+}

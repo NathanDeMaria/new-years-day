@@ -14,7 +14,8 @@ def create_db_engine():
     if url.startswith("sqlite"):
         return create_engine(url, connect_args={"check_same_thread": False})
     username, password = _get_username_password()
-    return create_engine(f"mysql+mysqldb://{username}:{password}@{url}/newYearsDay")
+    db_name = os.environ["DB_NAME"]
+    return create_engine(f"mysql+mysqldb://{username}:{password}@{url}/{db_name}")
 
 
 def _get_username_password() -> Tuple[str, str]:
