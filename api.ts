@@ -32,23 +32,13 @@ export class Api {
     return await this.post<Work>("work", { taskId, durationMinutes });
   }
 
-  public async getWorks(start: number): Promise<Work[]> {
-    if (start > 60) return [];
-    const pageSize = 20;
-    const works = [];
-    for (let i = start; i < start + pageSize; i++) {
-      works.push({
-        workId: `${i}`,
-        task: { name: `some ${i}`, taskId: "2", weight: 3 },
-        durationMinutes: 2,
-      });
-    }
-    return works;
+  public async getWorks(offset: number): Promise<Work[]> {
+    return await this.get<Work[]>("work", { offset });
   }
 
-  private async get<T>(path: string): Promise<T> {
+  private async get<T>(path: string, params = undefined): Promise<T> {
     try {
-      const response = await axios.get(`${this.apiRoot}/${path}`);
+      const response = await axios.get(`${this.apiRoot}/${path}`, { params });
       return response.data;
     } catch (error) {
       throw new Error(`GET: ${path} failed because: ${error}`);
