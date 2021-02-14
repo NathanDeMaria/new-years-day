@@ -1,13 +1,21 @@
 import axios from "axios";
-import Constants from "expo-constants";
+import { getApiUrl } from "./features/settings/settingsSlice";
 
 import { Task } from "./features/tasks/taskSlice";
 import { Work } from "./features/work/workSlice";
 
-const { manifest } = Constants;
-const API_ROOT = `http://${manifest.debuggerHost.split(":").shift()}:8000`;
-
 export class Api {
+  private apiRoot: string;
+
+  constructor(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
+
+  static async build() {
+    const apiRoot = await getApiUrl();
+    return new Api(apiRoot);
+  }
+
   public async addTask(name: string, weight: number): Promise<Task> {
     return await this.post<Task>("task", { name, weight });
   }
@@ -26,7 +34,7 @@ export class Api {
 
   private async get<T>(path: string): Promise<T> {
     try {
-      const response = await axios.get(`${API_ROOT}/${path}`);
+      const response = await axios.get(`${this.apiRoot}/${path}`);
       return response.data;
     } catch (error) {
       throw new Error(`GET: ${path} failed because: ${error}`);
@@ -35,7 +43,7 @@ export class Api {
 
   private async post<T>(path: string, body: any): Promise<T> {
     try {
-      const response = await axios.post(`${API_ROOT}/${path}`, body);
+      const response = await axios.post(`${this.apiRoot}/${path}`, body);
       return response.data;
     } catch (error) {
       throw new Error(`POST: ${path} failed because: ${error}`);

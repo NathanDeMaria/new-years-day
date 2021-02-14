@@ -26,7 +26,7 @@ export const addWorkThunk = (
   taskId: string,
   durationMinutes: number
 ): AppThunk => async (dispatch: any) => {
-  const api = new Api();
+  const api = await Api.build();
   await api.addWork(taskId, durationMinutes);
   // Is this where this goes?
   dispatch(fetchProgress());

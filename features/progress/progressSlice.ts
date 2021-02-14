@@ -12,7 +12,7 @@ const initialState: ProgressState = {
 };
 
 export const fetchProgress = createAsyncThunk("progess", async () => {
-  const api = new Api();
+  const api = await Api.build();
   return await api.getProgress();
 });
 

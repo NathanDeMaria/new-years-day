@@ -18,7 +18,7 @@ const initialState: TaskState = {
 };
 
 export const fetchTasks = createAsyncThunk("task/fetchAll", async () => {
-  const api = new Api();
+  const api = await Api.build();
   return await api.getTasks();
 });
 
@@ -45,7 +45,7 @@ const { addTask } = taskSlice.actions;
 export const addTaskThunk = (name: string, weight: number): AppThunk => async (
   dispatch: any
 ) => {
-  const api = new Api();
+  const api = await Api.build();
   const task = await api.addTask(name, weight);
   dispatch(addTask(task));
 };
