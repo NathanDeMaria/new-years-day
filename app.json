@@ -1,0 +1,12 @@
+{
+  "expo": {
+   "name": "New Years Day",
+   "icon": "./check.png",
+   "version": "1.0.0",
+   "slug": "new-years-day-slug",
+   "android": {
+     "package": "com.nathan.newyearsday",
+     "versionCode": 1
+   }
+  }
+}
