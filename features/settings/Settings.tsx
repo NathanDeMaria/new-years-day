@@ -9,15 +9,15 @@ export default () => {
     (async () => {
       const url = await getApiUrl();
       setApiUrl(url);
-    })()
-  }, [])
+    })();
+  }, []);
 
   const onClick = () => {
     (async () => {
       await saveApiUrl(apiUrl);
-    })()
+    })();
   };
-  
+
   return (
     <View style={styles.container}>
       <Text>API URL</Text>
@@ -26,7 +26,7 @@ export default () => {
         style={{ height: 40 }}
         value={apiUrl}
       />
-      <Button onPress={onClick} title="Add" />
+      <Button onPress={onClick} title="Set" />
     </View>
   );
 };
