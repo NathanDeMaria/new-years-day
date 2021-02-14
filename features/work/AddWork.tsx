@@ -8,13 +8,15 @@ import { fetchTasks, selectTasks } from "../tasks/taskSlice";
 
 export default () => {
   const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
   const [taskId, setTaskId] = useState<string>();
-  const [durationMinutes, setDurationMinutes] = useState<number>();
+  const [durationMinutes, setDurationMinutes] = useState<number | undefined>(
+    undefined
+  );
 
   const onClickAdd = () => {
     if (taskId && durationMinutes !== undefined) {
       dispatch(addWorkThunk(taskId, durationMinutes));
-      setTaskId("");
       setDurationMinutes(undefined);
     }
   };
@@ -22,7 +24,6 @@ export default () => {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  const tasks = useSelector(selectTasks);
 
   return (
     <View style={styles.container}>
