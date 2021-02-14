@@ -1,19 +1,28 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from "react-redux";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+
+import store from "./app/store";
+import AddTask from './features/tasks/AddTask';
+import TaskList from './features/tasks/TaskList';
+import Progress from './features/progress/Progress';
+import AddWork from './features/work/AddWork'
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator  initialRouteName="Progress">
+          <Drawer.Screen name="Progress" component={Progress} />
+          <Drawer.Screen name="Add Work" component={AddWork} />
+          <Drawer.Screen name="Add Task" component={AddTask} />
+          <Drawer.Screen name="Task List" component={TaskList} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
