@@ -22,12 +22,11 @@
 		"ms-python.pylance"
 	],
 	"mounts": [
-    	"source=${localEnv:HOME}/.aws/config,target=/root/.aws/config,type=bind,consistency=cached,ro=1",
+		"source=${localEnv:HOME}/.aws/config,target=/root/.aws/config,type=bind,consistency=cached,ro=1",
 		"source=${localEnv:HOME}/.aws/credentials,target=/root/.aws/credentials,type=bind,consistency=cached,ro=1"
 	],
 	"overrideCommand": true,
 	"containerEnv": {
-		//"DB_URL": "sqlite:///./sql_app.db"
-		"DB_URL": "new-years-day.cluster-cmeavv8hpruz.us-east-2.rds.amazonaws.com"
+		"DB_URL": "sqlite:///./sql_app.db"
 	}
 }
