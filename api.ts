@@ -32,6 +32,20 @@ export class Api {
     return await this.post<Work>("work", { taskId, durationMinutes });
   }
 
+  public async getWorks(start: number): Promise<Work[]> {
+    if (start > 60) return [];
+    const pageSize = 20;
+    const works = [];
+    for (let i = start; i < start + pageSize; i++) {
+      works.push({
+        workId: `${i}`,
+        task: { name: `some ${i}`, taskId: "2", weight: 3 },
+        durationMinutes: 2,
+      });
+    }
+    return works;
+  }
+
   private async get<T>(path: string): Promise<T> {
     try {
       const response = await axios.get(`${this.apiRoot}/${path}`);

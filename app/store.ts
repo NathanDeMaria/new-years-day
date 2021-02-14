@@ -8,10 +8,12 @@ import {
 
 import { progressSlice } from "../features/progress/progressSlice";
 import { taskSlice } from "../features/tasks/taskSlice";
+import { workSlice } from "../features/work/workSlice";
 
 const rootReducer = combineReducers({
   task: taskSlice.reducer,
   progress: progressSlice.reducer,
+  work: workSlice.reducer,
 });
 
 const store = configureStore({

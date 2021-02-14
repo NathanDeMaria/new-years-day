@@ -10,6 +10,7 @@ import TaskList from "./features/tasks/TaskList";
 import Progress from "./features/progress/Progress";
 import AddWork from "./features/work/AddWork";
 import Settings from "./features/settings/Settings";
+import WorkList from "./features/work/WorkList";
 
 const Drawer = createDrawerNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
         <Drawer.Navigator initialRouteName="Progress">
           <Drawer.Screen name="Progress" component={Progress} />
           <Drawer.Screen name="Add Work" component={AddWork} />
+          <Drawer.Screen name="Work List" component={WorkList} />
           <Drawer.Screen name="Add Task" component={AddTask} />
           <Drawer.Screen name="Task List" component={TaskList} />
           <Drawer.Screen name="Settings" component={Settings} />

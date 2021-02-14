@@ -1,4 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 
 import { AppState, AppThunk } from "../../app/store";
 import { Api } from "../../api";
@@ -11,15 +16,59 @@ export interface Work {
   durationMinutes: number;
 }
 
-// I assume I eventually want to keep track of work state in the UI?
-interface WorkState {}
+interface WorkUi {
+  // TODO: use this somewhere in the UI
+  loading: boolean;
+}
 
-const initialState: WorkState = {};
+interface WorkState {
+  works: Work[];
+  worksLoaded: number;
+  worksEnded: boolean;
+  ui: WorkUi;
+}
+
+const initialState: WorkState = {
+  works: [],
+  worksLoaded: 0,
+  worksEnded: false,
+  ui: {
+    loading: false,
+  },
+};
+
+export const fetchWorkPage = createAsyncThunk(
+  "work/fetchPage",
+  async (start: number) => {
+    const api = await Api.build();
+    return await api.getWorks(start);
+  }
+);
 
 export const workSlice = createSlice({
   name: "work",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      fetchWorkPage.pending,
+      (state: WorkState, action: PayloadAction) => {
+        state.ui.loading = true;
+      }
+    );
+    builder.addCase(
+      fetchWorkPage.fulfilled,
+      (state: WorkState, action: PayloadAction<Work[]>) => {
+        state.works = [...state.works, ...action.payload];
+        state.worksLoaded = state.works.length;
+        state.worksEnded = action.payload.length === 0;
+        state.ui.loading = false;
+      }
+    );
+    builder.addCase(fetchWorkPage.rejected, (state: WorkState) => {
+      state.ui.loading = false;
+    });
+  },
 });
 
 export const addWorkThunk = (
@@ -31,3 +80,18 @@ export const addWorkThunk = (
   // Is this where this goes?
   dispatch(fetchProgress());
 };
+
+const workSelector = (state: AppState) => state.work;
+
+export const worksSelector = createSelector(
+  workSelector,
+  (state: WorkState) => state.works
+);
+export const numWorksSelector = createSelector(
+  workSelector,
+  (state: WorkState) => state.worksLoaded
+);
+export const worksEndedSelector = createSelector(
+  workSelector,
+  (state: WorkState) => state.worksEnded
+);
