@@ -29,7 +29,8 @@ export class Api {
   }
 
   public async addWork(taskId: string, durationMinutes: number): Promise<Work> {
-    return await this.post<Work>("work", { taskId, durationMinutes });
+    const time = new Date().getTime();
+    return await this.post<Work>("work", { taskId, durationMinutes, time });
   }
 
   public async getWorks(offset: number): Promise<Work[]> {

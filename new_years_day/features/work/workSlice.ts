@@ -14,6 +14,7 @@ export interface Work {
   workId: string;
   task: Task;
   durationMinutes: number;
+  time: Date;
 }
 
 interface WorkUi {

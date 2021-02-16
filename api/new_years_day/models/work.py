@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel
 
 from .camel import to_camel
@@ -6,6 +7,7 @@ from .task import Task
 
 class BaseWork(BaseModel):
     duration_minutes: float
+    time: datetime
 
 
 class CreateWork(BaseWork):

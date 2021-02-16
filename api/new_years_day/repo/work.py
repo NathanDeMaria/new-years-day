@@ -12,7 +12,9 @@ class WorkRepo:
 
     def create_work(self, work: CreateWork) -> Work:
         db_work = WorkTable(
-            duration_minutes=work.duration_minutes, task_id=work.task_id
+            duration_minutes=work.duration_minutes,
+            task_id=work.task_id,
+            time=work.time,
         )
         self._db.add(db_work)
         self._db.commit()

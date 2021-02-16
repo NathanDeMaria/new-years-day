@@ -6,8 +6,9 @@ import { Work } from "./workSlice";
 export default ({ item }: { item: Work }) => {
   return (
     <View style={styles.item}>
-      <Text style={{ width: "50%" }}>{item.task.name}</Text>
-      <Text style={{ width: "50%" }}>{item.durationMinutes}</Text>
+      <Text style={{ width: "20%" }}>{item.task.name}</Text>
+      <Text style={{ width: "70%" }}>{item.time}</Text>
+      <Text style={{ width: "10%" }}>{item.durationMinutes}</Text>
     </View>
   );
 };
