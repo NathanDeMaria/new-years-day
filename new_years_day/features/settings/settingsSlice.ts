@@ -2,10 +2,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 
-const { manifest } = Constants;
-const DEFAULT_API_ROOT = `http://${manifest.debuggerHost
-  .split(":")
-  .shift()}:8000`;
+const {
+  manifest: { debuggerHost = "localhost:8000" },
+} = Constants;
+const DEFAULT_API_ROOT = `http://${debuggerHost.split(":").shift()}:8000`;
 
 const API_URL_KEY = "@api_url";
 
