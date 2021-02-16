@@ -14,4 +14,4 @@ REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-
 /usr/local/bin/aws ecr get-login-password --region $${REGION} | docker login --username AWS --password-stdin $${ACCOUNT_ID}.dkr.ecr.$${REGION}.amazonaws.com
 
 docker pull ${ image }
-docker run -d --rm -p ${ app_port }:8000 -e DB_URL=sqlite:///./sql_app.db -v ~/sql_app.db:/root/sql_app.db ${ image } main:app --host 0.0.0.0
+docker run -d --rm -p ${ app_port }:8000 -e DB_URL=sqlite:///./db/sql_app.db -v /home/ec2-user/db/:/db/sql_app.db ${ image } main:app --host 0.0.0.0
